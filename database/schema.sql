@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS Agent (
     phone VARCHAR(20)
 );
 
-
 CREATE TABLE IF NOT EXISTS Buyer (
     buyer_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
