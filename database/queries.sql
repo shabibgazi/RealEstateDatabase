@@ -16,6 +16,29 @@ WHERE school_district = 'Parkland'
     AND has_pool = FALSE
     AND status = 'Available';
 
+    
+-- Query (c): Agent who sold the most property in 2004 by total dollar value
+SELECT a.first_name, a.last_name, SUM(s.sale_price) AS total_sales_value
+FROM Agent a
+JOIN Sale s ON a.agent_id = s.selling_agent_id
+WHERE EXTRACT(YEAR FROM s.sale_date) = 2004
+GROUP BY a.agent_id, a.first_name, a.last_name
+ORDER BY total_sales_value DESC
+LIMIT 1;
+
+
+-- Query (d): For each agent, average selling price and average time on market in 2004
+SELECT 
+    a.first_name, 
+    a.last_name, 
+    AVG(s.sale_price) AS avg_selling_price,
+    AVG(s.sale_date - p.listing_date) AS avg_days_on_market
+FROM Agent a
+JOIN Sale s ON a.agent_id = s.selling_agent_id
+JOIN Property p ON s.property_id = p.property_id
+WHERE EXTRACT(YEAR FROM s.sale_date) = 2004
+GROUP BY a.agent_id, a.first_name, a.last_name;
+
 
 -- Query (e): Retrieve the image reference of the most expensive house(s)
 
