@@ -63,39 +63,39 @@ WHERE listing_price = (
 );
 
 
--- Query (f): Record a sale of an available property
--- Example: Selling property 5
--- Run once after testing the search queries
 
--- BEGIN;
+-- Query (f): Record the sale of an available property
+-- Example: Property 5 is sold for $270,000
 
--- INSERT INTO Sale (
---     sale_price, sale_date, property_id,
---     buyer_id, selling_agent_id, buyer_agent_id
--- )
--- SELECT 270000, '2005-09-10', property_id, 1, 2, NULL
--- FROM Property
--- WHERE property_id = 5
---   AND status = 'Available';
+BEGIN;
 
--- UPDATE Property
--- SET status = 'Sold'
--- WHERE property_id = 5
---   AND status = 'Available'
---   AND EXISTS (
---       SELECT 1
---       FROM Sale
---       WHERE Sale.property_id = Property.property_id
---   );
+DO $$
+BEGIN
+    -- Check whether the property is available
+    PERFORM 1
+    FROM Property
+    WHERE property_id = 5 AND status = 'Available'
+    FOR UPDATE;
 
--- COMMIT;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Property is not available for sale';
+    END IF;
 
+    -- Record the sale
+    INSERT INTO Sale (
+        sale_price, sale_date, property_id,
+        buyer_id, selling_agent_id, buyer_agent_id
+    )
+    VALUES (270000, '2005-09-10', 5, 1, 2, NULL);
 
--- Query (g): Add a new agent
--- Uncomment when demonstrating
+    -- Mark the property as sold
+    UPDATE Property
+    SET status = 'Sold'
+    WHERE property_id = 5;
+END $$;
 
--- INSERT INTO Agent (first_name, last_name, email, phone)
--- VALUES ('Emily', 'Clark', 'emily@realty.com', '555-0104');
+COMMIT;
+
 
 
 -- Additional Query 1: Average listing price by city
