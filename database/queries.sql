@@ -63,54 +63,62 @@ WHERE listing_price = (
 );
 
 
-
 -- Query (f): Record the sale of an available property
 -- Example: Property 5 is sold for $270,000
+-- Uncomment and run separately when demonstrating
 
-BEGIN;
+-- BEGIN;
 
-DO $$
-BEGIN
-    -- Check whether the property is available
-    PERFORM 1
-    FROM Property
-    WHERE property_id = 5 AND status = 'Available'
-    FOR UPDATE;
+-- DO $$
+-- BEGIN
+--     -- Check if the property is available
+--     PERFORM 1
+--     FROM Property
+--     WHERE property_id = 5 AND status = 'Available'
+--     FOR UPDATE;
 
-    IF NOT FOUND THEN
-        RAISE EXCEPTION 'Property is not available for sale';
-    END IF;
+--     IF NOT FOUND THEN
+--         RAISE EXCEPTION 'Property is not available for sale';
+--     END IF;
 
-    -- Record the sale
-    INSERT INTO Sale (
-        sale_price, sale_date, property_id,
-        buyer_id, selling_agent_id, buyer_agent_id
-    )
-    VALUES (270000, '2005-09-10', 5, 1, 2, NULL);
+--     -- Record the sale
+--     INSERT INTO Sale (
+--         sale_price, sale_date, property_id,
+--         buyer_id, selling_agent_id, buyer_agent_id
+--     )
+--     VALUES (270000, '2005-09-10', 5, 1, 2, NULL);
 
-    -- Mark the property as sold
-    UPDATE Property
-    SET status = 'Sold'
-    WHERE property_id = 5;
-END $$;
+--     -- Change the property status
+--     UPDATE Property
+--     SET status = 'Sold'
+--     WHERE property_id = 5;
+-- END $$;
 
-COMMIT;
+-- COMMIT;
 
+
+-- Query (g): Add a new agent
+-- Uncomment and run separately when demonstrating
+
+-- INSERT INTO Agent (first_name, last_name, email, phone)
+-- VALUES ('Emily', 'Clark', 'emily@realty.com', '555-0104');
 
 
 -- Additional Query 1: Average listing price by city
 
-SELECT city, AVG(listing_price) AS average_price
+SELECT city, ROUND(AVG(listing_price), 2) AS average_price
 FROM Property
-GROUP BY city;
+GROUP BY city
+ORDER BY city;
 
 
--- Additional Query 2: Number of available properties by city
+-- Additional Query 2: Number of available properties in each city
 
 SELECT city, COUNT(*) AS total_properties
 FROM Property
 WHERE status = 'Available'
-GROUP BY city;
+GROUP BY city
+ORDER BY city;
 
 
 -- Additional Query 3: Cheapest available property
@@ -118,18 +126,31 @@ GROUP BY city;
 SELECT street_address, city, listing_price
 FROM Property
 WHERE status = 'Available'
-ORDER BY listing_price
+ORDER BY listing_price ASC
 LIMIT 1;
 
 
--- Count records in each table
+-- Count the records in each table
 
-SELECT 'Agent' AS table_name, COUNT(*) FROM Agent
+SELECT 'Agent' AS table_name, COUNT(*) AS total_records
+FROM Agent
+
 UNION ALL
-SELECT 'Buyer', COUNT(*) FROM Buyer
+
+SELECT 'Buyer', COUNT(*)
+FROM Buyer
+
 UNION ALL
-SELECT 'Seller', COUNT(*) FROM Seller
+
+SELECT 'Seller', COUNT(*)
+FROM Seller
+
 UNION ALL
-SELECT 'Property', COUNT(*) FROM Property
+
+SELECT 'Property', COUNT(*)
+FROM Property
+
 UNION ALL
-SELECT 'Sale', COUNT(*) FROM Sale;
+
+SELECT 'Sale', COUNT(*)
+FROM Sale;
