@@ -1,7 +1,6 @@
 
 # Real Estate Database Management System
-CSE 241 – Database Systems
-Project 3
+CSC 4710/6710 - Database Systems
 
 Team Members: Shabib Gazi and Pa Musa Ngom
 
@@ -96,11 +95,6 @@ ON Sale(sale_date);
 | Sale | 25 |
 
 ## 4. SQL Queries and Results
-
-For each query, include:
-- Query in English
-- SQL query
-- Actual PostgreSQL result
 
 
 ### Query (a): Bethlehem Houses
