@@ -69,17 +69,19 @@ psql -d real_estate_db -f database/sample_data.sql
 
 Use a fresh database when loading the sample data.
 
+
 ### 2. Import property images
 
-Open PostgreSQL using:
+After creating the database and loading the sample data, run:
 
 ```bash
-psql -d real_estate_db
+python database/load_images.py
 ```
 
-Import the three images using `\lo_import`, then update the `house_image` column of properties 4, 5, and 6 with the returned OIDs.
+This script imports three property images into PostgreSQL as large objects and updates the corresponding properties with their image OIDs.
 
-The image OIDs depend on the database and should not be reused from another installation.
+If the images have already been imported, the script skips them.
+
 
 ### 3. Install Python dependencies
 
