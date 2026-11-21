@@ -1,28 +1,36 @@
 
--- Import images using PostgreSQL large objects.
--- Run these commands in psql after placing images on your computer.
+-- House image setup for the Real Estate Database
+-- Run these commands inside psql.
+-- Start psql from the RealEstateDatabase folder.
 
--- Replace the paths with the actual locations of your images.
+-- Import three images into PostgreSQL
+\lo_import 'images/house1.jpg'
+\lo_import 'images/house2.jpg'
+\lo_import 'images/house3.jpg'
 
--- \lo_import '/absolute/path/to/most_expensive.jpg'
--- \lo_import '/absolute/path/to/house2.jpg'
--- \lo_import '/absolute/path/to/house3.jpg'
+-- PostgreSQL prints an OID after each import.
+-- Replace the example numbers below with those OIDs.
+-- These are the OIDs from our original test database.
 
--- PostgreSQL will return an OID for each imported image.
--- Replace the example OIDs below with the actual values.
+UPDATE Property
+SET house_image = 16492
+WHERE property_id = 4;
 
--- UPDATE Property
--- SET house_image = 11111
--- WHERE property_id = 4;
+UPDATE Property
+SET house_image = 16493
+WHERE property_id = 5;
 
--- UPDATE Property
--- SET house_image = 22222
--- WHERE property_id = 5;
+UPDATE Property
+SET house_image = 16494
+WHERE property_id = 6;
 
--- UPDATE Property
--- SET house_image = 33333
--- WHERE property_id = 6;
+-- Check which properties have images
+SELECT property_id, street_address, house_image
+FROM Property
+WHERE house_image IS NOT NULL
+ORDER BY property_id;
 
--- Export the most expensive house image to display it.
-
--- \lo_export 11111 '/absolute/path/to/exported_house.jpg'
+-- To display the most expensive house:
+-- Export its image using the OID returned by the query above.
+-- Example:
+-- \lo_export 16492 'images/exported_house.jpg'
