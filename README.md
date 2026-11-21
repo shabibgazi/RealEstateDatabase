@@ -47,7 +47,7 @@ RealEstateDatabase/
 │   ├── schema.sql
 │   ├── sample_data.sql
 │   ├── queries.sql
-│   └── image_setup.sql
+│   └── load_images.py
 ├── images/
 │   ├── house1.jpg
 │   ├── house2.jpg
