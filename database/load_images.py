@@ -1,8 +1,8 @@
-
+import sys
 from pathlib import Path
 import psycopg2
 
-db_name = "real_estate_db"
+db_name = sys.argv[1] if len(sys.argv) > 1 else "real_estate_db"
 images_folder = Path(__file__).resolve().parent.parent / "images"
 
 images = {

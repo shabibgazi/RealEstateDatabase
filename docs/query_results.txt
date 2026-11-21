@@ -3,52 +3,77 @@
  303 Maple St
 (1 row)
 
- street_address 
-----------------
+   street_address   
+--------------------
+ 1030 Brenda Points
+ 1035 Bell Ports
  202 Hill Rd
-(1 row)
+(3 rows)
 
  first_name | last_name | total_sales 
 ------------+-----------+-------------
- Sarah      | Jenkins   |   700000.00
+ Mike       | Ross      |  1776039.00
 (1 row)
 
  first_name | last_name | average_selling_price | average_days_on_market 
 ------------+-----------+-----------------------+------------------------
- Sarah      | Jenkins   |             350000.00 |                 104.00
- Mike       | Ross      |             340000.00 |                  55.00
- Rachel     | Zane      |                       |                       
-(3 rows)
+ Sarah      | Jenkins   |             302813.50 |                  70.75
+ Mike       | Ross      |             355207.80 |                  50.80
+ Rachel     | Zane      |             199070.00 |                  71.00
+ Danielle   | Johnson   |             302351.33 |                  71.00
+ Jeffrey    | Lawrence  |             142332.00 |                  96.00
+ Teresa     | Gray      |                       |                       
+ Cynthia    | Diaz      |             177955.00 |                  88.00
+ Richard    | Jones     |             360506.00 |                  70.00
+ Wendy      | Taylor    |             339221.00 |                  52.00
+ Erin       | Wilson    |             421355.00 |                  53.00
+(10 rows)
 
  property_id | street_address | listing_price | house_image 
 -------------+----------------+---------------+-------------
-           4 | 101 Lake Dr    |     500000.00 |       16576
+           4 | 101 Lake Dr    |     500000.00 |       16660
 (1 row)
 
    city    | average_price 
 -----------+---------------
- Allentown |     312500.00
- Bethlehem |     203333.33
- Easton    |     500000.00
+ Allentown |     324285.71
+ Bethlehem |     271578.95
+ Easton    |     307352.94
 (3 rows)
 
    city    | total_properties 
 -----------+------------------
- Allentown |                1
- Bethlehem |                2
-(2 rows)
+ Allentown |                7
+ Bethlehem |               13
+ Easton    |                5
+(3 rows)
 
- street_address |   city    | listing_price 
-----------------+-----------+---------------
- 789 Pine Ln    | Bethlehem |     150000.00
+  street_address   |   city    | listing_price 
+-------------------+-----------+---------------
+ 1036 Eric Orchard | Bethlehem |     135000.00
 (1 row)
 
  table_name | total_records 
 ------------+---------------
- Agent      |             3
- Buyer      |             3
- Seller     |             3
- Property   |             6
- Sale       |             3
+ Agent      |            10
+ Buyer      |            30
+ Seller     |            30
+ Property   |            50
+ Sale       |            25
 (5 rows)
 
+Query (f): Record a property sale
+
+Property ID: 6
+Address: 303 Maple St
+Status: Sold
+Sale Price: 230000.00
+Sale Date: 2005-04-10
+
+Query (g): Add a new agent
+
+Agent ID: 11
+First Name: Emily
+Last Name: Clark
+Email: emily@example.com
+Phone: 555-0199
