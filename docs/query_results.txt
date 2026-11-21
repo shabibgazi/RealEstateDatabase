@@ -1,0 +1,54 @@
+ street_address 
+----------------
+ 303 Maple St
+(1 row)
+
+ street_address 
+----------------
+ 202 Hill Rd
+(1 row)
+
+ first_name | last_name | total_sales 
+------------+-----------+-------------
+ Sarah      | Jenkins   |   700000.00
+(1 row)
+
+ first_name | last_name | average_selling_price | average_days_on_market 
+------------+-----------+-----------------------+------------------------
+ Sarah      | Jenkins   |             350000.00 |                 104.00
+ Mike       | Ross      |             340000.00 |                  55.00
+ Rachel     | Zane      |                       |                       
+(3 rows)
+
+ property_id | street_address | listing_price | house_image 
+-------------+----------------+---------------+-------------
+           4 | 101 Lake Dr    |     500000.00 |       16576
+(1 row)
+
+   city    | average_price 
+-----------+---------------
+ Allentown |     312500.00
+ Bethlehem |     203333.33
+ Easton    |     500000.00
+(3 rows)
+
+   city    | total_properties 
+-----------+------------------
+ Allentown |                1
+ Bethlehem |                2
+(2 rows)
+
+ street_address |   city    | listing_price 
+----------------+-----------+---------------
+ 789 Pine Ln    | Bethlehem |     150000.00
+(1 row)
+
+ table_name | total_records 
+------------+---------------
+ Agent      |             3
+ Buyer      |             3
+ Seller     |             3
+ Property   |             6
+ Sale       |             3
+(5 rows)
+
